@@ -85,21 +85,130 @@
 										<li><a href="#" class="button">View Dashboards</a></li>
 									</ul>
 								</article>
-								<article>
-									<header>
-										
-										<h2><a href="#">Power BI Projects</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/Power BI.png" alt="" /></a>
-									<p>Power BI Dashboards for projects in Data Professional Evaluation.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">View Dashboards</a></li>
-									</ul>
-								</article>
-									
+								<!-- Article Section -->
+<article>
+  <header>
+    <h2><a href="#">Power BI Projects</a></h2>
+  </header>
+  <a href="#" class="image fit"><img src="images/Power BI.png" alt="Power BI" /></a>
+  <p>Power BI Dashboards for projects in Data Professional Evaluation.</p>
+  <ul class="actions special">
+    <li><a href="#" class="button" onclick="openDashboardModal()">View Dashboards</a></li>
+  </ul>
+</article>
 
-				
-					
+<!-- Modal Popup for Projects -->
+<div id="dashboardModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeDashboardModal()">&times;</span>
+    <h3>Power BI Dashboards</h3>
+    <div class="dashboard-grid">
+      <!-- Four Projects -->
+      <div class="project">
+        <img src="images/Power BI project 1.jfif" alt="Project 1" />
+        <button onclick="openProject('images/Project 1 - Apocolypse Food Prep Visualizations.jpg')">View Project</button>
+      </div>
+      <div class="project">
+        <img src="images/Power BI project 2.jfif" alt="Project 2" />
+        <button onclick="openProject('images/Project 2 - HR Healthy Living Dashboard.jpg')">View Project</button>
+      </div>
+      <div class="project">
+        <img src="images/Power BI project 3.jfif" alt="Project 3" />
+        <button onclick="openProject('images/Coming soon.png')">View Project</button>
+      </div>
+      <div class="project">
+        <img src="images/Power BI project 4.jfif" alt="Project 4" />
+        <button onclick="openProject('images/Coming soon.png')">View Project</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Project Viewer Modal (PDF or Image) -->
+<div id="projectViewer" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeProjectViewer()">&times;</span>
+    <div id="projectContent"></div>
+  </div>
+</div>
+
+<style>
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 200vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: auto;
+  }
+
+  .modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    width: 90vw;
+    height: 80vh;
+    max-width: 1200px;
+    max-height: 90vh;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    margin: 0;
+    aspect-ratio: unset;
+  }
+
+  .close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .project img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+  }
+</style>
+
+<script>
+  function openDashboardModal() {
+    document.getElementById("dashboardModal").classList.add("show");
+  }
+
+  function closeDashboardModal() {
+    document.getElementById("dashboardModal").classList.remove("show");
+  }
+
+  function openProject(filePath) {
+    const container = document.getElementById("projectContent");
+    if (filePath.endsWith(".pdf")) {
+      container.innerHTML = `<embed src="${filePath}" type="application/pdf" width="100%" height="600px" />`;
+    } else {
+      container.innerHTML = `<img src="${filePath}" style="width:100%;" />`;
+    }
+    document.getElementById("projectViewer").classList.add("show");
+  }
+
+  function closeProjectViewer() {
+    document.getElementById("projectViewer").classList.remove("show");
+    document.getElementById("projectContent").innerHTML = '';
+  }
+</script>
+
 						<section class="split contact">
 							<section class="alt">
 								<h3>Location</h3>
